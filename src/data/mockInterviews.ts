@@ -1,0 +1,78 @@
+import type { Interview } from '../types/application';
+import { daysFromToday } from '../utils/date';
+import { mockId } from './mockApplications';
+
+export const mockInterviews: Interview[] = [
+  {
+    _id: 'iv-001',
+    applicationId: mockId(3),
+    stage: 'Technical Round',
+    scheduledAt: daysFromToday(0, 15, 30),
+    durationMinutes: 60,
+    mode: 'Video',
+    interviewer: 'Priya Raman · Engineering Lead',
+  },
+  {
+    _id: 'iv-002',
+    applicationId: mockId(5),
+    stage: 'HR Round',
+    scheduledAt: daysFromToday(1, 11),
+    durationMinutes: 30,
+    mode: 'Phone',
+    interviewer: 'Kavya Menon · HR Business Partner',
+  },
+  {
+    _id: 'iv-003',
+    applicationId: mockId(2),
+    stage: 'Interview',
+    scheduledAt: daysFromToday(2, 14),
+    durationMinutes: 45,
+    mode: 'Video',
+    interviewer: 'Arjun Mehta · Engineering Manager',
+  },
+  {
+    _id: 'iv-004',
+    applicationId: mockId(7),
+    stage: 'Technical Round',
+    scheduledAt: daysFromToday(3, 10, 30),
+    durationMinutes: 90,
+    mode: 'Onsite',
+    interviewer: 'Panel · Payments Frontend Team',
+  },
+  {
+    _id: 'iv-005',
+    applicationId: mockId(10),
+    stage: 'Interview',
+    scheduledAt: daysFromToday(4, 16),
+    durationMinutes: 45,
+    mode: 'Video',
+    interviewer: 'Neha Kapoor · Hiring Manager',
+  },
+  {
+    _id: 'iv-006',
+    applicationId: mockId(20),
+    stage: 'HR Round',
+    scheduledAt: daysFromToday(6, 12),
+    durationMinutes: 30,
+    mode: 'Video',
+    interviewer: 'Rahul Iyer · Talent Partner',
+  },
+  {
+    _id: 'iv-007',
+    applicationId: mockId(14),
+    stage: 'Technical Round',
+    scheduledAt: daysFromToday(8, 11),
+    durationMinutes: 75,
+    mode: 'Onsite',
+    interviewer: 'Sandeep Rao · Principal Engineer',
+  },
+  {
+    _id: 'iv-008',
+    applicationId: mockId(27),
+    stage: 'Interview',
+    scheduledAt: daysFromToday(10, 15),
+    durationMinutes: 45,
+    mode: 'Phone',
+    interviewer: 'Recruiting Team',
+  },
+];
