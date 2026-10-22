@@ -15,14 +15,17 @@ import { useApplications } from '../hooks/useApplications';
 import { countByStatus } from '../utils/analytics';
 import { filterApplications, sortApplications } from '../utils/applications';
 import type { SortState, StatusFilter } from '../utils/applications';
-
+import {
+  Alert,
+  CircularProgress,
+} from '@mui/material';
 const ROWS_PER_PAGE_OPTIONS = [5, 10, 25];
 
 export default function Applications() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const location = useLocation();
-  const { applications, searchQuery, setSearchQuery } = useApplications();
+  const { applications, searchQuery, setSearchQuery,isLoading,isError, } = useApplications();
   const { dialogs, openAdd, openEdit, openDetails, requestDelete } = useApplicationDialogs();
 
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('All');
@@ -39,7 +42,39 @@ export default function Applications() {
     () => sortApplications(filterApplications(applications, searchQuery, statusFilter), sort),
     [applications, searchQuery, statusFilter, sort],
   );
+if (isLoading) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '300px',
+      }}
+    >
+      <CircularProgress />
+    </div>
+  );
+}
 
+if (isError) {
+  return (
+    <Alert
+      severity="error"
+      action={
+        <Button
+          color="inherit"
+          size="small"
+          onClick={() => window.location.reload()}
+        >
+          Retry
+        </Button>
+      }
+    >
+      Failed to load applications. Please try again.
+    </Alert>
+  );
+}
   // Clamp in case deletions removed the last row on the current page.
   const lastPage = Math.max(0, Math.ceil(results.length / rowsPerPage) - 1);
   const page = Math.min(requestedPage, lastPage);

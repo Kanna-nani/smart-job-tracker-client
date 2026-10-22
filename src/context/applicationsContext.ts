@@ -6,11 +6,14 @@ export interface NotifyOptions {
   severity?: 'success' | 'info' | 'warning' | 'error';
   actionLabel?: string;
   onAction?: () => void;
+  
 }
 
 export interface ApplicationsContextValue {
   applications: JobApplication[];
   interviews: Interview[];
+    isLoading: boolean;
+  isError: boolean;
   addApplication: (input: ApplicationInput) => void;
   updateApplication: (id: string, input: ApplicationInput) => void;
   deleteApplication: (id: string) => void;
